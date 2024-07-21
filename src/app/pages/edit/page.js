@@ -1,17 +1,20 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from 'react';
-import { createPage, getAllSvgs, updatePageAndSvg } from '@/app/actions/pageActions'; 
+import dynamic from 'next/dynamic';
+import { createPage, getAllSvgs, updatePageAndSvg } from '@/app/actions/pageActions';
 import styles from './EditPage.module.css';
-import QuillEditor from '@/app/pages/components/QuillEditor'; 
+
+// Dynamically import QuillEditor with SSR disabled
+const QuillEditor = dynamic(() => import('@/app/pages/components/QuillEditor'), { ssr: false });
 
 export default function EditPage() {
     const titleRef = useRef(null);
-    const contentRef = useRef(null); 
-    const additionalRef = useRef(null); 
+    const contentRef = useRef(null);
+    const additionalRef = useRef(null);
     const [svgs, setSvgs] = useState([]);
     const [selectedSvg, setSelectedSvg] = useState('');
-    const [additional, setAdditional] = useState(''); 
+    const [additional, setAdditional] = useState('');
     const [error, setError] = useState('');
     const [pageId, setPageId] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -20,7 +23,7 @@ export default function EditPage() {
         const fetchSvgs = async () => {
             setLoading(true);
             try {
-                const svgList = await getAllSvgs(); 
+                const svgList = await getAllSvgs();
                 setSvgs(svgList);
             } catch (error) {
                 console.error('Error fetching SVGs:', error);
@@ -35,15 +38,15 @@ export default function EditPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submit clicked'); 
+        console.log('Form submit clicked');
 
         if (!titleRef.current || !contentRef.current || !additionalRef.current) {
             setError('Editor references are not initialized.');
             return;
         }
 
-        const title = titleRef.current.getContent(); 
-        const content = contentRef.current.getContent(); 
+        const title = titleRef.current.getContent();
+        const content = contentRef.current.getContent();
         const additional = additionalRef.current.getContent();
 
         console.log('Title:', title);
@@ -90,7 +93,7 @@ export default function EditPage() {
                         ref={titleRef}
                         theme="snow"
                         placeholder="Enter title here"
-                        modules={{ toolbar: true }} 
+                        modules={{ toolbar: true }}
                     />
                 </div>
                 <div className={styles.formGroup}>
@@ -100,7 +103,7 @@ export default function EditPage() {
                         ref={contentRef}
                         theme="snow"
                         placeholder="Enter content here"
-                        modules={{ toolbar: true }} 
+                        modules={{ toolbar: true }}
                     />
                 </div>
                 <div className={styles.formGroup}>
@@ -110,7 +113,7 @@ export default function EditPage() {
                         ref={additionalRef}
                         theme="snow"
                         placeholder="Enter additional info here"
-                        modules={{ toolbar: true }} 
+                        modules={{ toolbar: true }}
                     />
                 </div>
                 <div className={styles.formGroup}>

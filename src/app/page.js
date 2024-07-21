@@ -1,7 +1,6 @@
-"use client"
-
-import React, { useEffect,useState } from 'react';
-import { useRouter } from 'next/navigation'; 
+'use client'
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './main.module.css';
 
 const Home = () => {
@@ -10,7 +9,6 @@ const Home = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-
       const scrollThreshold = 200;
       if (window.scrollY >= scrollThreshold) {
         setShowHeader(true);
@@ -37,8 +35,8 @@ const Home = () => {
             <section className={styles.introSection}>
               <h1>Welcome to PAY Team Site</h1>
               <p>
-                Here you'll find comprehensive documentation for all our services,
-                APIs, and development practices. Whether you're a new team member
+                Here you&apos;ll find comprehensive documentation for all our services,
+                APIs, and development practices. Whether you&apos;re a new team member
                 or a seasoned developer, this site will help you navigate through
                 our projects and services effectively.
               </p>
