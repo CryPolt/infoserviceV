@@ -1,7 +1,8 @@
+'use client'
 import React, { memo } from 'react';
 import { Handle, Position } from '@xyflow/react';
 
-export default memo(({ data, isConnectable }) => {
+const ColorSelectorNode = memo(({ data, isConnectable }) => {
     return (
         <>
             <Handle
@@ -37,3 +38,7 @@ export default memo(({ data, isConnectable }) => {
         </>
     );
 });
+
+ColorSelectorNode.displayName = 'ColorSelectorNode';
+
+export default ColorSelectorNode;

@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useEffect, useCallback } from 'react';
 import {
     ReactFlow,
@@ -105,30 +106,29 @@ const CustomNodeFlow = () => {
                 style: { stroke: '#fff' },
             },
         ]);
-    }, []);
+    }, [setEdges, setNodes]);
 
     const onConnect = useCallback(
         (params) => setEdges((eds) => addEdge(params, eds)),
-        [setEdges]
+        [setEdges],
     );
 
     return (
-        <div style={{ width: '100%', height: '100vh' }}>
+        <div className="layoutflow" style={{ height: 800 }}>
             <ReactFlow
                 nodes={nodes}
                 edges={edges}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
                 onConnect={onConnect}
-                nodeTypes={nodeTypes}
                 connectionLineStyle={connectionLineStyle}
                 snapToGrid={true}
                 snapGrid={snapGrid}
                 defaultViewport={defaultViewport}
+                nodeTypes={nodeTypes}
                 fitView
-                style={{ backgroundColor: bgColor }}
+                attributionPosition="top-right"
             >
-
                 <Controls />
             </ReactFlow>
         </div>
