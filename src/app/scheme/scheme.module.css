@@ -1,0 +1,80 @@
+/* scheme.module.css */
+
+.container {
+    padding: 20px;
+}
+
+.svgList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.svgItem {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.svgItem:hover {
+    background-color: #f0f0f0;
+}
+
+.svgContainer {
+    margin-top: 20px;
+}
+
+.svgImage {
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.hoverInfo {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.saveButton {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

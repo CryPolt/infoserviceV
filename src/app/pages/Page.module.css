@@ -1,0 +1,32 @@
+.container {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.header {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.pageList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.pageItem {
+    background: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pageItem h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.pageItem p {
+    font-size: 1rem;
+    color: #555;
+}

@@ -1,0 +1,51 @@
+
+.editorContainer {
+    padding: 20px;
+}
+
+.editorTitle {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.editorForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.formInput {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.quillWrapper {
+    margin-bottom: 20px;
+}
+
+.quillToolbar {
+    position: relative;
+}
+
+.quillEditor {
+    height: 400px;
+}
+
+.submitButton {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.loading {
+    font-size: 18px;
+    text-align: center;
+}
