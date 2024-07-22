@@ -2,15 +2,39 @@
 @import 'quill/dist/quill.snow.css';
 @import 'quill/dist/quill.bubble.css';
 
-.container {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background: rgb(30, 42, 58);
+}
+
+body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+}
+
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding-bottom: 90px;
+  overflow: hidden;
 }
 
 .nav {
   background-color: #333;
   padding: 10px;
+  flex-shrink: 0;
 }
 
 .link {
@@ -25,5 +49,5 @@
 
 main {
   padding: 20px;
-  flex: 1;
+  overflow-y: auto;
 }

@@ -1,0 +1,58 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class pages {
+   title: varchar(255)
+   content: text
+   created_at: timestamp
+   svg_id: int
+   active: int
+   additional: text
+   id: int
+}
+class svg_element_properties {
+   svg_id: int
+   element_id: varchar(255)
+   property_key: varchar(255)
+   property_value: longtext
+   id: int
+}
+class svg_element_texts {
+   svg_id: int
+   element_id: varchar(255)
+   text: text
+   additional_text: text
+   id: int
+}
+class svg_elements {
+   svg_id: int
+   element_id: varchar(255)
+   properties: text
+   description: text
+   id: int
+}
+class svgs {
+   content: longtext
+   properties: text
+   description: text
+   page_id: int
+   id: int
+}
+class users {
+   role_id: int
+   email: varchar(255)
+   password: varchar(255)
+   name: varchar(255)
+   created_at: timestamp
+   id: int
+}
+
+pages                   -[#595959,plain]-^  svgs                   : "svg_id:id"
+svg_element_properties  -[#595959,plain]-^  svgs                   : "svg_id:id"
+svg_element_texts       -[#595959,plain]-^  svgs                   : "svg_id:id"
+svg_elements            -[#595959,plain]-^  svgs                   : "svg_id:id"
+svgs                    -[#595959,plain]-^  pages                  : "page_id:id"
+@enduml
