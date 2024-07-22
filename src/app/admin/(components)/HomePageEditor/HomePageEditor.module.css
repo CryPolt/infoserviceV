@@ -1,0 +1,156 @@
+.container {
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.sectionHeader {
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.sectionContent {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.show {
+    display: block;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.inputText,
+.textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.checkbox {
+    margin-right: 10px;
+}
+
+.button,
+.addButton,
+.removeButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button {
+    background-color: #39495f;
+}
+
+.button:hover {
+    background-color: rgba(12, 12, 1, 0.07);
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.addButton {
+    background-color: #4caf50;
+}
+
+.addButton:hover {
+    background-color: #45a049;
+}
+
+.removeButton {
+    background-color: #f44336;
+}
+
+.removeButton:hover {
+    background-color: #e53935;
+}
+
+.previewContainer {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 2px solid #ddd;
+}
+
+.previewTitle {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(30, 42, 58);
+}
+
+.introSection {
+    max-width: 800px;
+    padding: 20px;
+    border-radius: 25px;
+    background: rgb(30, 42, 58);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.2);
+    color: whitesmoke;
+}
+
+.title {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.description {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.button:hover {
+    background-color: #333;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}

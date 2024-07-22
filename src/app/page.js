@@ -1,11 +1,18 @@
-'use client'
+'use client';
+
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from './main.module.css';
+import { getHomePageData } from '@/app/actions/Home';
 
 const Home = () => {
   const router = useRouter();
   const [showHeader, setShowHeader] = useState(false);
+  const [data, setData] = useState({
+    title: '',
+    description: '',
+    buttons: []
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,8 +31,26 @@ const Home = () => {
     };
   }, []);
 
-  const handleNavigate = (route) => {
-    router.push(route);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await getHomePageData();
+        if (result.error) {
+          console.error(result.error);
+        } else {
+          setData(result);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleNavigate = (url) => {
+    if (url) {
+      router.push(url);
+    }
   };
 
   return (
@@ -33,23 +58,23 @@ const Home = () => {
         <div className={styles.container}>
           <main>
             <section className={styles.introSection}>
-              <h1>Welcome to PAY Team Site</h1>
-              <p>
-                Here you&apos;ll find comprehensive documentation for all our services,
-                APIs, and development practices. Whether you&apos;re a new team member
-                or a seasoned developer, this site will help you navigate through
-                our projects and services effectively.
+              <h1 className={styles.title}>{data.title}</h1>
+              <p className={styles.description}>
+                {data.description}
               </p>
               <div className={styles.buttons}>
-                <button className={styles.button} onClick={() => handleNavigate('/service')}>
-                  Services
-                </button>
-                <button className={styles.button} onClick={() => handleNavigate('/documentation')}>
-                  Documentation
-                </button>
-                <button className={styles.button} onClick={() => handleNavigate('/team')}>
-                  Team
-                </button>
+                {data.buttons.map((button, index) => (
+                    button.isVisible && (
+                        <button
+                            key={index}
+                            className={styles.button}
+                            style={{ backgroundColor: button.color }}
+                            onClick={() => handleNavigate(button.url)}
+                        >
+                          {button.label}
+                        </button>
+                    )
+                ))}
               </div>
             </section>
           </main>

@@ -1,14 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { getAllPagesTable, updatePageStatus } from '@/app/actions/pageActions';
+import React, {useEffect, useState} from 'react';
+import {getAllPagesTable, updatePageStatus} from '@/app/actions/pageActions';
 import styles from './AdminSettingManager.module.css';
 
 // Function to truncate content
 const truncateContent = (content, maxLength = 100) => {
     if (!content) return '';
-    const truncated = content.length > maxLength ? content.substring(0, maxLength) + '...' : content;
-    return truncated;
+    return content.length > maxLength ? content.substring(0, maxLength) + '...' : content;
 };
 
 export default function AdminPageManager() {

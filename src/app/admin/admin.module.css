@@ -1,10 +1,9 @@
-/* src/app/admin/AdminPage.module.css */
 .container {
     display: flex;
 }
 
 .mainContent {
-    margin-left: 250px; /* Adjust this based on the sidebar width */
+    margin-left: 250px;
     padding: 20px;
     width: 100%;
 }
