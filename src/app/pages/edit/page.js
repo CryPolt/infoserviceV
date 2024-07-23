@@ -1,14 +1,14 @@
+// components/EditPage.js
 "use client";
+
 import React, { useRef, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { createPage, getAllSvgs, updatePageAndSvg } from '@/app/actions/pageActions';
 import styles from './EditPage.module.css';
-import QuillEditor from '@/app/pages/components/QuillEditor'; // Adjust import path based on your project structure
+import TinyMCEEditor from '@/app/pages/components/QuillEditor';
 
-// Dynamically import QuillEditor with SSR disabled
-const DynamicQuillEditor = dynamic(() => import('@/app/pages/components/QuillEditor'), { ssr: false });
 
-export default function EditPage() {
+const EditPage = () => {
     const titleRef = useRef(null);
     const contentRef = useRef(null);
     const additionalRef = useRef(null);
@@ -37,7 +37,6 @@ export default function EditPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submit clicked');
 
         if (!titleRef.current || !contentRef.current || !additionalRef.current) {
             setError('Editor references are not initialized.');
@@ -48,10 +47,6 @@ export default function EditPage() {
         const content = contentRef.current.getContent();
         const additional = additionalRef.current.getContent();
 
-        console.log('Title:', title);
-        console.log('Content:', content);
-        console.log('Additional:', additional);
-
         if (!title.trim() || !content.trim()) {
             setError('Title and content are required.');
             return;
@@ -60,7 +55,7 @@ export default function EditPage() {
         setLoading(true);
         try {
             if (pageId) {
-                await updatePageAndSvg({ pageId, svgId: selectedSvg });
+                await updatePageAndSvg({ pageId, svgId: selectedSvg, content, additional });
                 alert('Page and SVG updated successfully!');
             } else {
                 const newPageId = await createPage({ title, content, svgId: selectedSvg, additional });
@@ -87,32 +82,26 @@ export default function EditPage() {
             <form onSubmit={handleSubmit}>
                 <div className={styles.formGroup}>
                     <label htmlFor="title">Title</label>
-                    <QuillEditor
+                    <TinyMCEEditor
                         id="title"
                         ref={titleRef}
-                        theme="snow"
-                        placeholder="Enter title here"
-                        modules={{ toolbar: true }}
+                        initialValue=""
                     />
                 </div>
                 <div className={styles.formGroup}>
                     <label htmlFor="content">Content</label>
-                    <QuillEditor
+                    <TinyMCEEditor
                         id="content"
                         ref={contentRef}
-                        theme="snow"
-                        placeholder="Enter content here"
-                        modules={{ toolbar: true }}
+                        initialValue=""
                     />
                 </div>
                 <div className={styles.formGroup}>
                     <label htmlFor="additional">Additional Info (optional)</label>
-                    <QuillEditor
+                    <TinyMCEEditor
                         id="additional"
                         ref={additionalRef}
-                        theme="snow"
-                        placeholder="Enter additional info here"
-                        modules={{ toolbar: true }}
+                        initialValue=""
                     />
                 </div>
                 <div className={styles.formGroup}>
@@ -130,4 +119,6 @@ export default function EditPage() {
             </form>
         </div>
     );
-}
+};
+
+export default EditPage;

@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { saveSvg } from '@/app/actions/Diagram';
-import { getElementTexts } from '@/app/actions/Diagram'; // Импортируйте функцию для получения текстов элементов
+import { saveSvg, fetchElementText } from '@/app/actions/Diagram'; // Updated import
 import styles from '../scheme.module.css';
 
 const UploadPage = () => {
@@ -29,16 +28,20 @@ const UploadPage = () => {
                     const newId = await saveSvg({ content: modifiedSvg });
                     setMessage(`SVG uploaded and saved with ID: ${newId}`);
 
-                    // Получение текстов элементов после загрузки
-                    const texts = await getElementTexts(newId);
+                    // Fetch all texts for elements after saving the SVG
+                    const texts = await fetchElementText(newId);
 
-                    // Форматирование данных
-                    const data = texts.map(({ element_id, text }) => ({
-                        id: element_id,
-                        text
-                    }));
+                    if (texts.error) {
+                        setMessage('Error fetching element texts.');
+                    } else {
+                        // Format data
+                        const data = texts.map(({ element_id, text }) => ({
+                            id: element_id,
+                            text
+                        }));
 
-                    setElementData(data);
+                        setElementData(data);
+                    }
                 } catch (error) {
                     console.error('Error saving SVG:', error);
                     setMessage('Failed to save SVG.');

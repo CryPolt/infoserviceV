@@ -3,8 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { getSvgById } from '@/app/actions/Diagram';
-import ElementInfo from '../ElementInfo'; 
-import Modal from '../Modal'; 
+import ElementInfo from '../ElementInfo';
+import Modal from '../(components)/Modal';
 import styles from '../scheme.module.css'; 
 import ElementInfoView from '../ElementInfoView';
 

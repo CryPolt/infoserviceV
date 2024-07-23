@@ -1,9 +1,8 @@
-// pages/diagram.js
 "use client";
 import React, { useEffect, useState } from 'react';
-import SvgViewer from './DrawioDiagram'; // Убедитесь, что путь верный
-import styles from './scheme.module.css'; // Убедитесь, что путь верный
-import { getAllSvgs } from '@/app/actions/Diagram'; // Убедитесь, что путь верный
+import SvgViewer from './DrawioDiagram'; // Ensure this path is correct
+import styles from './scheme.module.css'; // Ensure this path is correct
+import { getAllSvgs } from '@/app/actions/Diagram'; // Ensure this path is correct
 
 const DiagramPage = () => {
     const [svgs, setSvgs] = useState([]);
@@ -13,7 +12,7 @@ const DiagramPage = () => {
         const fetchSvgs = async () => {
             try {
                 const response = await getAllSvgs();
-                console.log(response)
+                console.log(response);
                 setSvgs(response);
             } catch (error) {
                 console.error('Failed to fetch SVGs:', error);
@@ -27,6 +26,10 @@ const DiagramPage = () => {
         setSelectedSvgId(id);
     };
 
+    const handleClose = () => {
+        setSelectedSvgId(null);
+    };
+
     return (
         <div className={styles.container}>
             <h1>All Diagrams</h1>
@@ -37,7 +40,11 @@ const DiagramPage = () => {
                     </div>
                 ))}
             </div>
-            {selectedSvgId && <SvgViewer svgId={selectedSvgId} />}
+            {selectedSvgId && (
+                <div className={styles.svgContainer}>
+                    <SvgViewer svgId={selectedSvgId} onClose={handleClose} />
+                </div>
+            )}
         </div>
     );
 };

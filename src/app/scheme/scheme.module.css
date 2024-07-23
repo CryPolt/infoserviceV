@@ -2,12 +2,17 @@
 
 .container {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .svgList {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    width: 100%;
+    max-width: 1200px; /* Adjust as needed */
 }
 
 .svgItem {
@@ -16,6 +21,7 @@
     padding: 10px;
     border-radius: 5px;
     transition: background-color 0.3s;
+    flex: 1 1 200px; /* Adjust size */
 }
 
 .svgItem:hover {
@@ -23,19 +29,17 @@
 }
 
 .svgContainer {
-    margin-top: 20px;
+    width: 100%;
+    max-width: 1200px; /* Adjust as needed */
+    margin-top: 20px; /* Space between list and SVG */
+    display: flex;
+    justify-content: center; /* Center the SVG horizontally */
 }
 
 .svgImage {
-    border: 1px solid #ddd;
-    padding: 10px;
-    background-color: #f9f9f9;
-}
-
-.hoverInfo {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
+    max-width: 100%;
+    max-height: 80vh; /* Limit maximum height */
+    object-fit: contain;
 }
 
 .modal {
@@ -77,4 +81,9 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.elementInfo {
+    padding: 20px;
+    font-size: 16px;
 }

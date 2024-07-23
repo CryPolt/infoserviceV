@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { getSvgById } from '@/app/actions/Diagram';
 import ElementInfo from './ElementInfo';
-import Modal from './Modal';
+import Modal from './(components)/Modal';
 import styles from './scheme.module.css';
 
-const DrawioDiagram = ({ svgId }) => {
+const DrawioDiagram = ({ svgId, onClose }) => {
     const [svgContent, setSvgContent] = useState('');
     const [selectedElement, setSelectedElement] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,10 +49,11 @@ const DrawioDiagram = ({ svgId }) => {
     return (
         <div>
             <div
-                className={styles.svgContainer}
+                className={styles.svgImage}
                 onClick={handleElementClick}
                 dangerouslySetInnerHTML={{ __html: svgContent }}
             />
+            <button className={styles.closeButton} onClick={onClose}>Close</button>
             {isModalOpen && (
                 <Modal onClose={closeModal}>
                     <ElementInfo element={selectedElement} />
