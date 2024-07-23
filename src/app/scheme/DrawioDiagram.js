@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getSvgById } from '@/app/actions/Diagram';
 import ElementInfo from './ElementInfo';
-import Modal from './Modal'; 
+import Modal from './Modal';
 import styles from './scheme.module.css';
 
 const DrawioDiagram = ({ svgId }) => {

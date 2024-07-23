@@ -152,11 +152,11 @@ export async function createPage({ title, content, additional = '', svgId = null
     try {
         const [result] = await pool.query(
             'INSERT INTO pages (title, content, additional, svg_id) VALUES (?, ?, ?, ?)', 
-            [title, content, additional, svgId]
+            [title, content, additional, svgId || null]
         );
         return result.insertId;
     } catch (error) {
-        console.error('Error creating page:', error);
+        console.error('Ошибка создания страницы:', error);
         throw error;
     }
 }

@@ -1,12 +1,12 @@
 "use client";
-
 import React, { useRef, useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import { createPage, getAllSvgs, updatePageAndSvg } from '@/app/actions/pageActions';
 import styles from './EditPage.module.css';
+import QuillEditor from '@/app/pages/components/QuillEditor'; // Adjust import path based on your project structure
 
 // Dynamically import QuillEditor with SSR disabled
-const QuillEditor = dynamic(() => import('@/app/pages/components/QuillEditor'), { ssr: false });
+const DynamicQuillEditor = dynamic(() => import('@/app/pages/components/QuillEditor'), { ssr: false });
 
 export default function EditPage() {
     const titleRef = useRef(null);
@@ -14,7 +14,6 @@ export default function EditPage() {
     const additionalRef = useRef(null);
     const [svgs, setSvgs] = useState([]);
     const [selectedSvg, setSelectedSvg] = useState('');
-    const [additional, setAdditional] = useState('');
     const [error, setError] = useState('');
     const [pageId, setPageId] = useState(null);
     const [loading, setLoading] = useState(false);

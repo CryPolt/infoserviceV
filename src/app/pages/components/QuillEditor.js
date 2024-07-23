@@ -1,15 +1,14 @@
-"use client"
-import React, { useImperativeHandle, useRef } from 'react';
+"use client";
+import React, { useRef, useImperativeHandle, forwardRef } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-// eslint-disable-next-line react/display-name
-const QuillEditor = React.forwardRef((props, ref) => {
+const QuillEditor = forwardRef((props, ref) => {
     const editorRef = useRef(null);
 
     useImperativeHandle(ref, () => ({
         getContent: () => {
-            return editorRef.current?.getEditor().root.innerHTML;
+            return editorRef.current?.getEditor().root.innerHTML || '';
         },
         setContent: (content) => {
             if (editorRef.current) {

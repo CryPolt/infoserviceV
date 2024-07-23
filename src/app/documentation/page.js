@@ -1,10 +1,10 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import styles from './documentation.module.css';
 import { getAllPages, getPageById } from '@/app/actions/pageActions';
 import Link from 'next/link';
 import DOMPurify from 'dompurify';
+import dompurify from "quill/formats/link";
 
 const DocumentationPage = () => {
     const [pages, setPages] = useState([]);
@@ -69,66 +69,62 @@ const DocumentationPage = () => {
         setAdditionalInfo('');
     };
 
-    if (loading) {
-        return <div>Загрузка...</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
-
     const getPageSummary = (pageId) => {
         const page = pages.find(p => p.id === pageId);
         return page ? DOMPurify.sanitize(page.summary) : 'Нет доступного описания';
     };
 
+    console.log(pages.find(page => page.id === activePage),'apge arrau');
+
     return (
         <div className={styles.container}>
+            {/* Sidebar */}
             <aside className={styles.sidebar}>
                 <div className={styles.sidebarHeader}>Документация PAY</div>
                 <ul className={styles.navList}>
+                    {/* Overview Link */}
                     <li className={styles.navItem}>
                         <a
                             className={`${styles.navLink} ${activePage === 'Overview' ? styles.navLinkActive : ''}`}
                             onClick={() => handlePageClick('Overview')}
-                        >
-                            Обзор
-                        </a>
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize('Обзор') }}
+                        />
                     </li>
+                    {/* Documentation Link */}
                     <li className={styles.navItem}>
                         <a
                             className={`${styles.navLink} ${activePage === 'Documentation' ? styles.navLinkActive : ''}`}
                             onClick={handleShowAllPages}
-                        >
-                            Документация
-                        </a>
+                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize('Документация') }}
+                        />
                     </li>
                 </ul>
             </aside>
             <main className={styles.content}>
                 <div className={styles.contentHeader}>
                     {activePage === 'Documentation'
-                        ? 'Обзор документации'
+                        ? <span className={styles.contentText}>Обзор документации</span>
                         : activePage === 'Overview'
-                        ? 'Обзор'
-                        : pages.find(page => page.id === activePage)?.title}
+                            ? <span className={styles.contentText}>Обзор</span>
+                            : <span className={styles.contentText} dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(pages.find(page => page.id === activePage)?.title) }} />
+                    }
+
                 </div>
                 <div className={styles.contentBody}>
                     {activePage === 'Documentation' ? (
                         <div>
                             <p>Выберите страницу из списка, чтобы просмотреть её описание.</p>
                             <ul className={styles.navList}>
-                                {pages.map(page => (
+                                { pages.map(page => (
                                     <li key={page.id} className={styles.navItem}>
                                         <a
                                             className={`${styles.navLink} ${selectedPageId === page.id ? styles.navLinkActive : ''}`}
                                             onClick={() => handlePageClick(page.id)}
-                                        >
-                                            {page.title}
-                                        </a>
+                                            dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.title) }}
+                                        />
                                         {selectedPageId === page.id && (
                                             <div className={styles.pageSummary}>
-                                                <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(getPageSummary(page.id)) }} />
+                                                <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(page.id) }} />
                                             </div>
                                         )}
                                     </li>
@@ -146,7 +142,7 @@ const DocumentationPage = () => {
                 </div>
                 {activePage !== 'Documentation' && additionalInfo && (
                     <div className={styles.additionalInfo}>
-                        <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(additionalInfo) }} />
+                        <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(additionalInfo) }}/>
                         <div className={styles.links}>
                             <Link href={`/pages/${selectedPageId}`} className={styles.link}>
                                 Перейти на Документацию Сервиса

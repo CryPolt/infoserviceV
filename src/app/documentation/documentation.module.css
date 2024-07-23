@@ -4,13 +4,15 @@
     display: flex;
     height: 100vh;
     font-family: Arial, sans-serif;
+    background: rgb(30, 42, 58);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar {
     width: 250px;
-    background-color: #f9f9f9;
+    background: rgb(30, 42, 58);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
 }
 
@@ -18,7 +20,7 @@
     font-size: 1.4em;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #333;
+    color: whitesmoke;
 }
 
 .navList {
@@ -33,7 +35,7 @@
 
 .navLink {
     text-decoration: none;
-    color: #333;
+    color: white;
     display: block;
     padding: 12px 16px;
     border-radius: 5px;
@@ -54,19 +56,24 @@
 .content {
     flex: 1;
     padding: 20px;
-    background-color: #fff;
+    background: rgb(30, 42, 58);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.2);
     overflow-y: auto;
+    margin-left: 0.25rem;
 }
 
 .contentHeader {
+    font-style: inherit;
     font-size: 1.6em;
     margin-bottom: 20px;
-    color: #444;
+    color: white;
+    margin-left: 1rem;
 }
 
 .contentBody {
     font-size: 1em;
-    color: #555;
+    color: whitesmoke;
+    margin-left: 2rem;
 }
 
 .pageDescription {
@@ -76,14 +83,15 @@
 .pageSummary {
     margin-left: 20px;
     font-style: italic;
-    color: #666;
+    color: whitesmoke;
 }
 
 .additionalInfo {
     margin-top: 30px;
     border-top: 1px solid #ddd;
     padding-top: 20px;
-    color: #444;
+    color: whitesmoke;
+    margin-left: 1.5rem;
 }
 
 .largeText {
@@ -100,7 +108,7 @@
 .link {
     display: inline-block;
     text-decoration: none;
-    color: #fff;
+    color: whitesmoke;
     background-color: #747514;
     padding: 10px 15px;
     border-radius: 5px;
